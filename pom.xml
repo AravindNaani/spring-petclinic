@@ -39,6 +39,9 @@
     <nohttp-checkstyle.version>0.0.11</nohttp-checkstyle.version>
     <nullaway.version>0.12.10</nullaway.version>
     <spring-format.version>0.0.47</spring-format.version>
+    <sonar.coverage.jacoco.xmlReportPaths>
+            target/site/jacoco/jacoco.xml
+    </sonar.coverage.jacoco.xmlReportPaths>
   </properties>
 
   <dependencies>
