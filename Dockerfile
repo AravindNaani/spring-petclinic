@@ -1,0 +1,25 @@
+FROM eclipse-temurin:25-jre-alpine AS build
+
+WORKDIR /app
+
+COPY pom.xml /app/pom.xml
+
+RUN mvn clean package -DskipTests
+
+FROM eclipse-temurin:25-jre-alpine
+
+WORKDIR /app
+
+ENV MYSQL_USER=petclinic
+
+ENV MYSQL_PASS=petclinic
+
+ENV MYSQL_URL=jdbc:mysql://mysql:3306/petclinic
+
+COPY . .
+
+COPY  --from=build /app/target/*.jar app.jar
+
+EXPOSE 8081
+
+ENTRYPOINT [ "java", "-jar", "/app/app.jar", "--spring.profiles.active=mysql" ]
