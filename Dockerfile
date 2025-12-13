@@ -16,6 +16,8 @@ ENV MYSQL_PASS=petclinic
 
 ENV MYSQL_URL=jdbc:mysql://mysql:3306/petclinic
 
+ENV MYSQL_ROOT_PASSWORD=root
+
 COPY . .
 
 COPY  --from=build /app/target/*.jar app.jar
