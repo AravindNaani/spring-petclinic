@@ -42,6 +42,9 @@
     <sonar.coverage.jacoco.xmlReportPaths>
             target/site/jacoco/jacoco.xml
     </sonar.coverage.jacoco.xmlReportPaths>
+    <properties>
+      <nohttp.checkstyle.skip>true</nohttp.checkstyle.skip>
+    </properties>
   </properties>
 
   <dependencies>
