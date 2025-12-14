@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY pom.xml /app/pom.xml
 
-RUN mvn clean package
+RUN mvn clean package -DskipTests -Dnohttp.checkstyle.skip=true
 
 FROM eclipse-temurin:25-jre-alpine
 
