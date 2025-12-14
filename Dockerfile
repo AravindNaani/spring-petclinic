@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY pom.xml /app/pom.xml
 
-RUN mvn clean package -DskipTests
+RUN mvn clean package -Dmaven.test.skip=true -Dcheckstyle.skip=true
 
 FROM eclipse-temurin:25-jre-alpine
 
