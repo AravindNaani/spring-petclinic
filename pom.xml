@@ -471,5 +471,11 @@
         </pluginManagement>
       </build>
     </profile>
+    <profile>
+        <id>ci</id>
+        <properties>
+            <nohttp.checkstyle.skip>true</nohttp.checkstyle.skip>
+        </properties>
+    </profile>
   </profiles>
 </project>
