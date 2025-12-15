@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: PetClinic
+  labels: 
+    app: petclinic
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: petclinic
+  template:
+    metadata:
+      labels:
+        app: petclinic
+    spec:
+      InitContainers:
+      - name: wait for mysql
+        image: busybox
+        command: ['sh', '-c', 'until nc -z -v -w30 mysql-service 3306; do echo "Waiting for database connection..."; sleep 5; done echo Mysql is available;']
+      containers:
+      - name: petclinic
+        image: aravindnimmala/petclinic:V37
+        ports:
+        - containerPort: 8080
+        env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: mysql
+        - name: SERVICE_BINDING_ROOT
+          value: /bindings
+        - name: SPRING_APPLICATION_JSON
+          value: |
+            {
+              "management.endpoint.health.probes.add-additional-paths": true
+            }
+        livenessProbe:
+          httpGet:
+            path: /livez
+            port: http
+        readinessProbe:
+          httpGet:  
+            path: /readyz
+            port: http
+        volumeMounts:
+          - mountPath: /bindings/secret
+            name: binding
+            readOnly: true
+      volumes:
+        - name: binding
+          secret:
+            secretName: petclinic-binding
+
+
+
