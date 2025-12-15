@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: PetClinic
+  name: petclinic
   labels: 
     app: petclinic
 spec:
@@ -15,7 +15,7 @@ spec:
         app: petclinic
     spec:
       initContainers:
-      - name: wait for mysql
+      - name: wait-for-mysql
         image: busybox
         command: ['sh', '-c', 'until nc -z -v -w30 mysql-service 3306; do echo "Waiting for database connection..."; sleep 5; done echo Mysql is available;']
       containers:
