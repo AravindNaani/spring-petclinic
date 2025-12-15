@@ -4,7 +4,7 @@ metadata:
   name: petclinic-service
 spec:
   selector:
-    app: petclinic
+    app: petclinic-app
   ports:
     - protocol: TCP
       port: 80
