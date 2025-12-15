@@ -49,4 +49,6 @@ public class NamedEntity extends BaseEntity {
 		return (name != null) ? name : "<null>";
 	}
 
+
+	
 }
