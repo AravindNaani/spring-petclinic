@@ -51,7 +51,7 @@ spec:
             secretName: petclinic-binding
 
 ---
-apiVersion: apps/v1
+apiVersion: v1
 kind: Secret
 metadata:
   name: petclinic-binding
