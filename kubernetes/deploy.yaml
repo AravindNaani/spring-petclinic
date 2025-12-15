@@ -37,19 +37,6 @@ spec:
           value: mysql
         - name: SERVICE_BINDING_ROOT
           value: /bindings
-        - name: SPRING_APPLICATION_JSON
-          value: |
-            {
-              "management.endpoint.health.probes.add-additional-paths": true
-            }
-        livenessProbe:
-          httpGet:
-            path: /livez
-            port: 8081
-        readinessProbe:
-          httpGet:  
-            path: /readyz
-            port: 8081
         volumeMounts:
           - mountPath: /bindings/secret
             name: binding
