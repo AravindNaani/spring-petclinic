@@ -20,7 +20,7 @@ spec:
         command: ['sh', '-c', 'until nc -z -v -w30 mysql-service 3306; do echo "Waiting for database connection..."; sleep 5; done echo Mysql is available;']
       containers:
       - name: petclinic
-        image: aravindnimmala/petclinic:V81
+        image: aravindnimmala/petclinic:V82
         ports:
         - containerPort: 8081
         env:
