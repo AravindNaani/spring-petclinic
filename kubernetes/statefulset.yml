@@ -3,17 +3,17 @@ kind: StatefulSet
 metadata:
   name: petclinic-mysql
   labels: 
-    app: petclinic
+    app: petclinic-mysql
 spec:
   serviceName: "mysql-service"
   replicas: 1
   selector:
     matchLabels:
-      app: petclinic
+      app: petclinic-mysql
   template:
     metadata:
       labels:
-        app: petclinic
+        app: petclinic-mysql
     spec:
       containers:
         - name: mysql
@@ -53,5 +53,5 @@ spec:
     - port: 3306
       name: mysql
   selector:
-    app: petclinic
+    app: petclinic-mysql
   clusterIP: None

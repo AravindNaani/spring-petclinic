@@ -1,23 +1,32 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: petclinic
+  name: petclinic-app
   labels: 
-    app: petclinic
+    app: petclinic-app
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: petclinic
+      app: petclinic-app
   template:
     metadata:
       labels:
-        app: petclinic
+        app: petclinic-app
     spec:
       initContainers:
       - name: wait-for-mysql
         image: busybox
-        command: ['sh', '-c', 'until nc -z -v -w30 mysql-service 3306; do echo "Waiting for database connection..."; sleep 5; done echo Mysql is available;']
+        command:
+          - sh
+          - -c
+          - |
+            apk add --no-cache netcat-openbsd
+            until nc -z mysql-service 3306; do
+            echo "Waiting for database connection..."
+            sleep 5
+            done
+            echo "MySQL is available"
       containers:
       - name: petclinic
         image: aravindnimmala/petclinic:V100
@@ -36,11 +45,11 @@ spec:
         livenessProbe:
           httpGet:
             path: /livez
-            port: http
+            port: 8081
         readinessProbe:
           httpGet:  
             path: /readyz
-            port: http
+            port: 8081
         volumeMounts:
           - mountPath: /bindings/secret
             name: binding
@@ -57,9 +66,10 @@ metadata:
   name: petclinic-binding
 type: Opaque
 stringData:
-  SPRING_DATASOURCE_URL: jdbc:mysql://mysql-service:3306/petclinic
-  SPRING_DATASOURCE_USERNAME: petclinic
-  SPRING_DATASOURCE_PASSWORD: petclinic
+  MYSQL_URL: jdbc:mysql://mysql-service:3306/petclinic
+  MYSQL_USER: petclinic
+  MYSQL_PASS: petclinic
+  MYSQL_ROOT_PASSWORD: root
 
 
 
