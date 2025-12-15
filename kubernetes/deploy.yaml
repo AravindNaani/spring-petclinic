@@ -29,7 +29,7 @@ spec:
             echo "MySQL is available"
       containers:
       - name: petclinic
-        image: aravindnimmala/petclinic:V100
+        image: aravindnimmala/petclinic:V103
         ports:
         - containerPort: 8081
         env:
