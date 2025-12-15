@@ -14,7 +14,7 @@ spec:
       labels:
         app: petclinic
     spec:
-      InitContainers:
+      initContainers:
       - name: wait for mysql
         image: busybox
         command: ['sh', '-c', 'until nc -z -v -w30 mysql-service 3306; do echo "Waiting for database connection..."; sleep 5; done echo Mysql is available;']
