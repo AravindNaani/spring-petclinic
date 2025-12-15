@@ -1,10 +1,12 @@
-FROM maven:3.9-eclipse-temurin-25 AS build
+FROM eclipse-temurin:17-jre-alpine AS build
 
 WORKDIR /app
 
 COPY pom.xml /app/pom.xml
 
-RUN mvn clean package -DskipTests -Dnohttp.checkstyle.skip=true
+COPY /src /app/src
+
+RUN mvn clean package -DskipTests
 
 FROM eclipse-temurin:25-jre-alpine
 
