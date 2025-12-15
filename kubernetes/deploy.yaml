@@ -50,5 +50,16 @@ spec:
           secret:
             secretName: petclinic-binding
 
+---
+apiVersion: apps/v1
+kind: Secret
+metadata:
+  name: petclinic-binding
+type: Opaque
+data:
+  SPRING_DATASOURCE_URL: jdbc:mysql://mysql-service:3306/petclinic
+  SPRING_DATASOURCE_USERNAME: petclinic
+  SPRING_DATASOURCE_PASSWORD: petclinic
+
 
 
