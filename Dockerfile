@@ -18,7 +18,7 @@ ENV MYSQL_USER=petclinic
 
 ENV MYSQL_PASS=petclinic
 
-ENV MYSQL_URL=jdbc:mysql://mysql:3306/petclinic
+ENV MYSQL_URL=jdbc:mysql://mysql-service:3306/petclinic
 
 ENV MYSQL_ROOT_PASSWORD=root
 
