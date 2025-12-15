@@ -56,7 +56,7 @@ kind: Secret
 metadata:
   name: petclinic-binding
 type: Opaque
-data:
+stringData:
   SPRING_DATASOURCE_URL: jdbc:mysql://mysql-service:3306/petclinic
   SPRING_DATASOURCE_USERNAME: petclinic
   SPRING_DATASOURCE_PASSWORD: petclinic
